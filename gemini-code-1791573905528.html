@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090d18">
+<title>Montando Meu PC | GUIA ULTRA COMPLETO 💡</title>
+<style>
+:root{--bg:#080c16;--panel:#101827;--panel2:#141f31;--text:#f3f6ff;--muted:#aab6ca;--lime:#c5ff4a;--cyan:#57e7ff;--red:#ff5757;--gold:#ffd700;--line:#29364b;--radius:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 80% 0%,#172b42 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+.wrap{width:min(1120px,92%);margin:auto}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;gap:18px}
+.brand{font-weight:900;letter-spacing:-.5px;display:flex;align-items:center;gap:10px}
+.brand-mark{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--lime);color:#101510;font-size:22px}
+.navlinks{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px}
+.btn{border:0;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 19px;border-radius:13px;background:var(--lime);color:#10150b;font-weight:900;font-size:14px;transition:transform .18s,filter .18s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.btn.secondary{background:transparent;border:1px solid var(--line);color:var(--text)}
+.hero{display:grid;grid-template-columns:1fr;align-items:center;gap:24px;padding:70px 0 76px}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border:1px solid #405039;border-radius:99px;color:var(--lime);font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.hero h1{font-size:clamp(42px,6.5vw,72px);line-height:1.02;letter-spacing:-3px;margin:22px 0}
+.hero h1 span{color:var(--lime)}
+.lead{font-size:18px;color:var(--muted);max-width:570px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin:28px 0}
+.smallnote{font-size:12px;color:#8998ae}
+.section{padding:76px 0}
+.section-head{text-align:center;max-width:780px;margin:0 auto 36px}
+.kicker{color:var(--lime);font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase}
+.section h2{font-size:clamp(29px,4vw,43px);letter-spacing:-1.3px;line-height:1.12;margin:12px 0}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.feature,.module,.price-card,.tip-card,.interactive-card{background:linear-gradient(150deg,var(--panel),#0d1420);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.mini-pill{display:inline-block;padding:5px 9px;border:1px solid var(--line);border-radius:99px;font-size:11px;color:var(--lime);font-weight:800}
+
+/* Estilos da tela de seleção de Guia */
+#dicas-page{display:none;min-height:100vh;padding-bottom:80px}
+#dicas-page.active{display:block;animation:fadeIn 0.3s ease-in-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.back-btn{display:inline-flex;align-items:center;gap:8px;color:var(--lime);font-weight:700;margin-bottom:20px;cursor:pointer;background:none;border:none;font-size:16px}
+.option-select-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-bottom:40px}
+.select-btn{padding:20px;border-radius:18px;background:var(--panel2);border:2px solid var(--line);color:var(--text);text-align:left;cursor:pointer;transition:all 0.2s}
+.select-btn:hover,.select-btn.active{border-color:var(--lime);background:#18283f}
+.select-btn h3{margin:0 0 6px;font-size:18px;display:flex;align-items:center;gap:8px}
+.select-btn p{margin:0;font-size:13px;color:var(--muted)}
+.content-box{display:none;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:32px;margin-top:20px}
+.content-box.active{display:block}
+.img-guide{width:100%;max-height:380px;object-fit:cover;border-radius:16px;margin:16px 0;border:1px solid var(--line)}
+.steps-list{display:grid;gap:16px;margin-top:20px}
+.step-item{display:flex;gap:16px;background:#ffffff04;padding:16px;border-radius:14px;border:1px solid #ffffff0a}
+.step-number{width:36px;height:36px;background:var(--lime);color:#000;font-weight:900;border-radius:50%;display:grid;place-items:center;flex-shrink:0}
+.cta-checkout-box{background:linear-gradient(135deg,#1b2e4b,#0d1829);border:2px solid var(--lime);border-radius:24px;padding:36px;text-align:center;margin-top:60px}
+
+/* TELA COMPLETA DO GUIA DETALHADO */
+#course-master-page{display:none;min-height:100vh;background:var(--bg)}
+#course-master-page.active{display:block}
+.course-layout{display:grid;grid-template-columns:280px 1fr;gap:32px;max-width:1400px;margin:0 auto;padding:30px 20px}
+@media(max-width:900px){.course-layout{grid-template-columns:1fr}}
+
+/* Sidebar / Menu Lateral */
+.course-sidebar{position:sticky;top:30px;height:calc(100vh - 60px);background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px;overflow-y:auto}
+@media(max-width:900px){.course-sidebar{position:static;height:auto;margin-bottom:20px}}
+.course-sidebar h3{font-size:16px;margin-top:0;color:var(--lime);border-bottom:1px solid var(--line);padding-bottom:12px}
+.topic-menu{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.topic-menu a{display:block;padding:10px 14px;border-radius:10px;font-size:14px;color:var(--muted);transition:0.2s}
+.topic-menu a:hover,.topic-menu a.active{background:var(--panel2);color:var(--lime);font-weight:bold}
+
+/* Conteúdo do Curso */
+.course-main{display:grid;gap:40px}
+.course-card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:32px;scroll-margin-top:30px}
+.course-card h2{font-size:28px;margin-top:0;color:var(--text)}
+
+.summary-box{background:linear-gradient(135deg,#1f351c,#0f1f10);border:1px solid var(--lime);border-radius:16px;padding:20px;margin-top:20px}
+.summary-box h4{margin:0 0 8px;color:var(--lime);display:flex;align-items:center;gap:8px}
+.summary-box p{margin:0;font-size:14px;color:#d0e6c5}
+
+/* Novas caixas de bom/ruim/roda */
+.super-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:20px}
+.super-box{border-radius:16px;padding:20px;border:1px solid var(--line)}
+.super-box.good{background:#112a1c;border-color:#2e7d32}
+.super-box.bad{background:#2a1111;border-color:#c62828}
+.super-box.runs{background:#11233a;border-color:#1565c0}
+.super-box h4{margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:8px}
+.super-box ul{margin:0;padding-left:20px;font-size:14px;color:var(--muted)}
+.super-box ul li{margin-bottom:6px}
+
+/* Tabela e Listas Acessíveis */
+.tech-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+.tech-table th,.tech-table td{padding:12px;border:1px solid var(--line);text-align:left}
+.tech-table th{background:var(--panel2);color:var(--lime)}
+
+/* Container de Vídeo Responsivo */
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;border:1px solid var(--line);margin:20px 0}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* JOGO MODERNO / CANVAS ENGINE */
+#game-wrapper{position:relative;background:#05070d;border:2px solid var(--lime);border-radius:20px;overflow:hidden;box-shadow:0 0 30px rgba(197,255,74,0.15);margin-top:20px}
+#gameCanvas{display:block;width:100%;max-width:800px;height:400px;margin:0 auto;background:#030509}
+.game-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(8,12,22,0.85);backdrop-filter:blur(6px);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;text-align:center;padding:20px}
+.game-overlay.hidden{display:none}
+.fps-hud{position:absolute;top:15px;left:15px;background:rgba(0,0,0,0.7);padding:8px 14px;border-radius:10px;border:1px solid var(--lime);font-size:14px;font-weight:bold;color:var(--lime);z-index:5}
+
+/* LISTA DE COMPONENTES RECOMENDADOS */
+.parts-build-box{background:var(--panel2);border:1px solid var(--lime);border-radius:16px;padding:20px;margin-top:16px}
+.parts-list{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:10px}
+.parts-list li{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#ffffff05;border-radius:8px;border:1px solid var(--line);font-size:14px}
+.parts-list li span:first-child{color:var(--muted);font-weight:bold}
+.parts-list li span:last-child{color:var(--lime);font-weight:bold}
+</style>
+</head>
+<body>
+
+<!-- TELA PRINCIPAL / LANDING PAGE -->
+<div id="main-landing">
+  <header class="wrap nav">
+    <a class="brand" href="#inicio"><span class="brand-mark">💡</span><span>Montando Meu PC<small style="display:block;color:var(--muted);font-size:10px;letter-spacing:1.4px">TUTORIAL ULTRA COMPLETO</small></span></a>
+    <nav class="navlinks"><a href="#faixas">Orçamento</a><a href="#conteudo">Conteúdo</a><button class="btn" onclick="openDicasPage()">Veja tudo ↗</button></nav>
+  </header>
+
+  <main>
+    <section class="wrap hero" id="inicio">
+      <div>
+        <span class="eyebrow">⚡ GUIA COMPLETO & ACESSÍVEL</span>
+        <h1>Seu primeiro PC começa com <span>conhecimento.</span></h1>
+        <p class="lead">Aprenda tudo sobre peças, compatibilidade, periféricos e montagem em vídeo — sem complicação e totalmente acessível.</p>
+        <div class="actions">
+          <button class="btn" onclick="openDicasPage()">Veja tudo <span>→</span></button>
+          <a class="btn secondary" href="#conteudo">Ver o conteúdo</a>
+        </div>
+        <p class="smallnote">Para todos os públicos • Linguagem simples e explicativa • Vídeos e fotos inclusas</p>
+      </div>
+    </section>
+
+    <!-- CALCULADORA DE ORÇAMENTO 1 -->
+    <section class="section" id="faixas" style="background:#ffffff03">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">CALCULADORA DE PEÇAS POR VALOR</div>
+          <h2>Escolha quanto quer investir</h2>
+          <p>Arraste o medidor para selecionar seu limite financeiro exato. Nosso sistema escolhe os componentes perfeitos peça por peça para você!</p>
+        </div>
+        <div class="interactive-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <label for="quickBudget" style="font-weight:bold">Seu orçamento estimado:</label>
+            <strong id="quickBudgetLabel" style="color:var(--lime);font-size:26px">R$ 2.500</strong>
+          </div>
+          <input id="quickBudget" type="range" min="700" max="30000" step="50" value="2500" style="width:100%;accent-color:var(--lime)">
+          <div style="display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:6px"><span>R$ 700</span><span>R$ 30.000</span></div>
+          
+          <div class="parts-build-box">
+            <span class="mini-pill">CONFIGURAÇÃO RECOMENDADA PARA ESSE VALOR</span>
+            <h3 id="tierName" style="margin:8px 0 2px">PC Gamer de Entrada (Vídeo Integrado)</h3>
+            <p id="tierDescription" style="color:var(--muted);margin:0 0 12px;font-size:14px"></p>
+            
+            <ul class="parts-list" id="partsListDisplay">
+              <!-- Peças dinâmicas inseridas via JS -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="conteudo">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">CONHECIMENTO COMPLETO</div>
+          <h2>O que você vai dominar neste guia</h2>
+        </div>
+        <div class="grid3">
+          <div class="feature"><h3>01. Todas as Peças em Detalhes</h3><p>Saiba para que serve cada componente com fotos, vídeos e analogias simples.</p></div>
+          <div class="feature"><h3>02. Montagem Passo a Passo em Vídeo</h3><p>Assista ao tutorial completo de montagem do zero sem risco de danificar nada.</p></div>
+          <div class="feature"><h3>03. Jogo Pesado & Teste de FPS Real</h3><p>Jogue nosso mini-game com gráfico neon completo e teste o FPS do seu navegador!</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- TELA DE NAVEGAÇÃO RÁPIDA -->
+<div id="dicas-page" class="wrap" style="padding-top:40px">
+  <button class="back-btn" onclick="closeDicasPage()">← Voltar para o início</button>
+  
+  <div class="section-head">
+    <div class="kicker">GUIA ACESSÍVEL & COMPLETO</div>
+    <h2>Escolha o módulo que deseja consultar</h2>
+    <p>Navegue pelos módulos interativos abaixo ou abra o guia explicativo super detalhado.</p>
+  </div>
+
+  <div class="option-select-grid">
+    <button class="select-btn active" onclick="showTopic('pecas', event)">
+      <h3>🧩 O Que É Cada Peça?</h3>
+      <p>Entenda a função de cada item com comparações simples.</p>
+    </button>
+    <button class="select-btn" onclick="showTopic('montagem', event)">
+      <h3>🛠️ Como Montar do Zero</h3>
+      <p>Passo a passo seguro e sem segredos de montagem.</p>
+    </button>
+    <button class="select-btn" onclick="showTopic('orcamentos', event)">
+      <h3>💡 Regras de Ouro</h3>
+      <p>Saiba onde economizar e onde NUNCA cortar gastos.</p>
+    </button>
+  </div>
+
+  <!-- TÓPICO 1: PEÇAS -->
+  <div id="topic-pecas" class="content-box active">
+    <h3>Entendendo os Componentes do PC</h3>
+    <p style="color:var(--muted)">Compreender as peças evita desperdício de dinheiro em coisas desnecessárias.</p>
+    <img class="img-guide" src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=1000&q=80" alt="Peças de computador">
+    <div class="grid3">
+      <div><h4>🧠 Processador (CPU)</h4><p style="color:var(--muted);font-size:14px">É o cérebro. Faz os cálculos e coordena tudo no sistema.</p></div>
+      <div><h4>🧩 Placa-Mãe</h4><p style="color:var(--muted);font-size:14px">A espinha dorsal que conecta e comunica todos os periféricos.</p></div>
+      <div><h4>🎮 Placa de Vídeo (GPU)</h4><p style="color:var(--muted);font-size:14px">Desenha os gráficos dos jogos e acelera edições pesadas.</p></div>
+      <div><h4>⚡ Fonte de Alimentação</h4><p style="color:var(--muted);font-size:14px">Recebe a energia da tomada e distribui com proteção total para o PC.</p></div>
+    </div>
+  </div>
+
+  <!-- TÓPICO 2: MONTAGEM -->
+  <div id="topic-montagem" class="content-box">
+    <h3>Montagem Simples e Segura</h3>
+    <p style="color:var(--muted)">Siga a sequência lógica recomendada por especialistas:</p>
+    <img class="img-guide" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1000&q=80" alt="Montando PC">
+    <div class="steps-list">
+      <div class="step-item"><div class="step-number">1</div><div><b>Fora do Gabinete:</b> Instale o Processador, Memória RAM e SSD NVMe diretamente na Placa-Mãe.</div></div>
+      <div class="step-item"><div class="step-number">2</div><div><b>Fonte e Gabinete:</b> Parafuse a Fonte no gabinete e prepare os espaçadores metálicos.</div></div>
+      <div class="step-item"><div class="step-number">3</div><div><b>Finalização:</b> Fixe a placa-mãe, encaixe a Placa de Vídeo e ligue os cabos de energia.</div></div>
+    </div>
+  </div>
+
+  <!-- TÓPICO 3: ORÇAMENTOS -->
+  <div id="topic-orcamentos" class="content-box">
+    <h3>Estratégia de Custo-Benefício</h3>
+    <p style="color:var(--muted)">Regras essenciais para não cair em pegadinhas de lojas:</p>
+    <img class="img-guide" src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1000&q=80" alt="Setup de PC">
+    <ul>
+      <li style="margin-bottom:10px"><b>Priorize Dual Channel:</b> 2 pentes de 8GB dão muito mais desempenho em jogos do que 1 pente único de 16GB.</li>
+      <li style="margin-bottom:10px"><b>Nunca use Estabilizador:</b> Ligue sua fonte com certificação 80 Plus em um bom Filtro de Linha.</li>
+      <li style="margin-bottom:10px"><b>SSD é Obrigatório:</b> Esqueça HDs mecânicos para o sistema operacional.</li>
+    </ul>
+  </div>
+
+  <!-- BOTAO DE ENTRADA DO GUIA ULTRA COMPLETO -->
+  <div class="cta-checkout-box">
+    <span class="mini-pill" style="margin-bottom:12px;color:var(--lime);border-color:var(--lime)">ACESSO GRATUITO E COMPLETO</span>
+    <h2 style="font-size:36px;margin:12px 0">Quer ver o Guia Técnico Super Detalhado?</h2>
+    <p style="color:var(--muted);max-width:650px;margin:0 auto 20px">Acesse a explicação completa com vídeos, imagens, calculadora de componentes por orçamento e nosso **Jogo Neon com Medidor de FPS**!</p>
+    <button class="btn" style="font-size:18px;padding:18px 36px" onclick="openSuperGuide()">🚀 ABRIR GUIA SUPER EXPLICADO (VEJA TUDO) ↗</button>
+  </div>
+</div>
+
+<!-- ================= TELA DO GUIA SUPER DETALHADO ================= -->
+<div id="course-master-page">
+  <div style="background:var(--panel);border-bottom:1px solid var(--line);padding:16px 20px">
+    <div style="max-width:1400px;margin:auto;display:flex;justify-content:space-between;align-items:center">
+      <div class="brand"><span class="brand-mark">💡</span><span>Guia Super Explicado & Acessível | Montando Meu PC</span></div>
+      <button class="back-btn" style="margin:0" onclick="closeCoursePage()">← Voltar</button>
+    </div>
+  </div>
+
+  <div class="course-layout">
+    <!-- SIDEBAR DE NAVEGAÇÃO -->
+    <aside class="course-sidebar">
+      <h3>📚 Sumário do Guia</h3>
+      <ul class="topic-menu">
+        <li><a href="#sec-montagem" onclick="setActiveTopic(this)">1. Como Montar o PC (Vídeo + Passo a Passo)</a></li>
+        <li><a href="#sec-gpus" onclick="setActiveTopic(this)">2. Melhores Placas de Vídeo (GPUs)</a></li>
+        <li><a href="#sec-monitores" onclick="setActiveTopic(this)">3. Melhores Monitores (Painéis e Hz)</a></li>
+        <li><a href="#sec-mouses" onclick="setActiveTopic(this)">4. Mouses, Teclados e Periféricos</a></li>
+        <li><a href="#sec-fontes" onclick="setActiveTopic(this)">5. Fontes & Segurança Elétrica</a></li>
+        <li><a href="#sec-analise" onclick="setActiveTopic(this)">6. O Que Roda, Bom vs Ruim</a></li>
+        <li><a href="#sec-game" onclick="setActiveTopic(this)">7. 🎮 Mini-Game Neon & Teste de FPS</a></li>
+        <li><a href="#sec-calculator2" onclick="setActiveTopic(this)">8. 🧮 Escolha seu PC pelo Preço Exato</a></li>
+      </ul>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL EXTREMAMENTE DETALHADO -->
+    <main class="course-main">
+
+      <!-- SEÇÃO 1: COMO MONTAR -->
+      <section id="sec-montagem" class="course-card">
+        <span class="mini-pill">PASSO A PASSO & VÍDEO</span>
+        <h2>1. Como Montar um PC Do Zero (Guia em Vídeo e Fotos)</h2>
+        <p>Montar um computador é extremamente simples quando você segue a ordem correta. Assista ao vídeo explicativo abaixo e acompanhe as fotos de cada etapa!</p>
+
+        <!-- VÍDEO EXPLICATIVO EMBUTIDO DO YOUTUBE -->
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/g4aM4_M2p-Y" title="Como Montar um PC Passo a Passo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <img class="img-guide" src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=1200&q=80" alt="Processo de Montagem do PC">
+
+        <div class="steps-list">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div>
+              <b>Preparação da Placa-Mãe (Fora do Gabinete):</b>
+              <p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Coloque a placa-mãe em cima da caixa de papelão. Abra a alavanca do soquete da CPU, alinhe a marcação dourada do processador e encaixe sem pressionar.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div>
+              <b>Instalação das Memórias RAM e SSD NVMe:</b>
+              <p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Abra as travas dos slots. Para ativar o Dual Channel, use os slots 2 e 4. Insira o SSD NVMe M.2 na entrada dedicada e parafuse suavemente.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div>
+              <b>Fixação no Gabinete e Conexão de Cabos:</b>
+              <p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Instale a Fonte de Alimentação na parte inferior. Parafuse a placa-mãe sobre os espaçadores e conecte os cabos de energia (24 pinos, CPU e GPU) e os botões do painel frontal.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 2: MELHORES PLACAS DE VÍDEO -->
+      <section id="sec-gpus" class="course-card">
+        <span class="mini-pill">HARDWARE & DESEMPENHO</span>
+        <h2>2. As Melhores Placas de Vídeo (GPUs)</h2>
+        <p>A placa de vídeo determina a resolução e fluidez gráfica. Confira a tabela completa:</p>
+
+        <img class="img-guide" src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=1200&q=80" alt="Placa de Vídeo GPU">
+
+        <table class="tech-table">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Resolução Ideal</th>
+              <th>Tecnologias</th>
+              <th>Para Quem É Indicada?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>AMD Radeon RX 6600 (8GB)</b></td>
+              <td>Full HD (1080p)</td>
+              <td>FSR / Ray Tracing Básico</td>
+              <td><b>Rei do Custo-Benefício:</b> Roda todos os jogos atuais com excelente desempenho gasto mínimo.</td>
+            </tr>
+            <tr>
+              <td><b>NVIDIA RTX 4060 (8GB)</b></td>
+              <td>Full HD Alto / Ultra</td>
+              <td>DLSS 3 (Gerador de Quadros)</td>
+              <td><b>Eficiência & Tecnologia:</b> Consome pouca energia, oferece DLSS 3 e ótimo desempenho em Ray Tracing.</td>
+            </tr>
+            <tr>
+              <td><b>AMD Radeon RX 7700 XT / 7800 XT</b></td>
+              <td>Quad HD (1440p)</td>
+              <td>FSR 3 / VRAM Generosa (12/16GB)</td>
+              <td><b>Desempenho Bruto:</b> Excelente para jogar em 1440p com textura no máximo e muita longevidade.</td>
+            </tr>
+            <tr>
+              <td><b>NVIDIA RTX 4070 Super / 4080 Super</b></td>
+              <td>Quad HD & 4K Ultra</td>
+              <td>DLSS 3.5 / Ray Tracing Avançado</td>
+              <td><b>Topo de Linha / Profissional:</b> Ideal para criadores de conteúdo, live streaming e edições 4K.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- SEÇÃO 3: MONITORES -->
+      <section id="sec-monitores" class="course-card">
+        <span class="mini-pill">EXIBIÇÃO & VISUAL</span>
+        <h2>3. Guia de Monitores: Taxa de Atualização (Hz) e Painéis</h2>
+        <p>Entenda como escolher o monitor correto para extrair cada quadro gerado pela sua placa de vídeo:</p>
+
+        <img class="img-guide" src="https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=1200&q=80" alt="Monitor Gamer">
+
+        <div class="super-grid">
+          <div class="super-box runs">
+            <h4>🖥️ Tipos de Painel</h4>
+            <ul>
+              <li><b>IPS:</b> Cores vibrantes e melhores ângulos de visão. Perfeito para jogos e trabalho.</li>
+              <li><b>VA:</b> Alto contraste e pretos profundos, ótimo para filmes e cenários escuros.</li>
+              <li><b>OLED:</b> O ápice da imagem, pretos absolutos e tempo de resposta de 0.03ms.</li>
+            </ul>
+          </div>
+          <div class="super-box good">
+            <h4>⚡ Frequência (Hz) e Resposta</h4>
+            <ul>
+              <li><b>60Hz - 75Hz:</b> Uso diário, escritório e jogos de história casuais.</li>
+              <li><b>144Hz - 180Hz:</b> O padrão competitivo para jogos como Valorant, CS2 e League of Legends.</li>
+              <li><b>240Hz+:</b> Máxima fluidez para jogadores profissionais de e-sports.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 4: PERIFÉRICOS -->
+      <section id="sec-mouses" class="course-card">
+        <span class="mini-pill">CONTROLE & CONFORTO</span>
+        <h2>4. Mouses, Teclados e Acessórios</h2>
+        <p>A acessibilidade e ergonomia do seu setup dependem da escolha correta dos periféricos:</p>
+
+        <div class="grid3" style="margin-top:20px">
+          <div class="feature">
+            <h3>🖱️ Mouses (Sensores & Peso)</h3>
+            <p style="font-size:14px;color:var(--muted)">Prefira mouses ópticos com sensores de alta precisão (ex: PixArt PAW3395) e peso reduzido (abaixo de 70g) para evitar fadiga no pulso.</p>
+          </div>
+          <div class="feature">
+            <h3>⌨️ Teclados Mecânicos</h3>
+            <p style="font-size:14px;color:var(--muted)"><b>Switch Vermelho:</b> Leve e silencioso (Ideal para jogos).<br><b>Switch Azul:</b> Clique audível e tátil.<br><b>Switch Marrom:</b> Equilíbrio macio.</p>
+          </div>
+          <div class="feature">
+            <h3>🎧 Headsets e Áudio</h3>
+            <p style="font-size:14px;color:var(--muted)">Busque headsets com almofadas de tecido respirável e drivers de 50mm para localização sonora precisa em jogos de tiro.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 5: FONTES DE ALIMENTAÇÃO -->
+      <section id="sec-fontes" class="course-card">
+        <span class="mini-pill">SEGURANÇA ELÉTRICA</span>
+        <h2>5. Fontes de Alimentação (PSU) & Proteção</h2>
+        <p>A fonte distribui energia e protege todos os seus componentes contra picos elétricos da rede.</p>
+
+        <div class="super-grid">
+          <div class="super-box good">
+            <h4>✅ O Que Procurar Numa Fonte</h4>
+            <ul>
+              <li><b>Selo 80 Plus:</b> Garante eficiência energética e menor geração de calor.</li>
+              <li><b>Proteções Elétricas (OVP/UVP/SCP):</b> Desligam a fonte antes que uma oscilação queime o PC.</li>
+              <li><b>PFC Ativo:</b> Correção do fator de potência nativo.</li>
+            </ul>
+          </div>
+          <div class="super-box bad">
+            <h4>❌ O Que NUNCA Fazer</h4>
+            <ul>
+              <li><b>Nunca use Estabilizadores:</b> Estabilizadores danificam fontes modernas de PFC ativo!</li>
+              <li><b>Evite Fontes Genéricas Baratas:</b> Fontes sem marca são a maior causa de incêndios e peças queimadas.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 6: RESUMO SUPER EXPLICADO -->
+      <section id="sec-analise" class="course-card" style="border:2px solid var(--lime)">
+        <span class="mini-pill" style="background:var(--lime);color:#000">ANÁLISE DEFINITIVA</span>
+        <h2 style="margin-top:10px">6. O Que Roda, O Que é Bom, O Que é Ruim e Por Que</h2>
+        
+        <div class="super-grid">
+          <div class="super-box runs">
+            <h4>🎮 O Que Cada Categoria Roda</h4>
+            <ul>
+              <li><b>Vídeo Integrado (Ryzen 5600G):</b> GTA V, Valorant (150+ FPS), CS2 e Fortnite.</li>
+              <li><b>PC Intermediário (RX 6600 / RTX 4060):</b> Jogos em Full HD no Ultra com alta fluidez.</li>
+              <li><b>PC High-End (RTX 4070 / RX 7800 XT):</b> Jogos em Quad HD e 4K com Ray Tracing e DLSS/FSR.</li>
+            </ul>
+          </div>
+
+          <div class="super-box good">
+            <h4>✅ Boas Práticas Indispensáveis</h4>
+            <ul>
+              <li>Instalar o Windows em um SSD NVMe M.2.</li>
+              <li>Ativar a tecnologia XMP / DOCP na BIOS para a memória RAM rodar no clock máximo.</li>
+              <li>Utilizar gabinetes com frente em malha metálica (Mesh).</li>
+            </ul>
+          </div>
+
+          <div class="super-box bad">
+            <h4>❌ Erros Comuns para Evitar</h4>
+            <ul>
+              <li>Comprar soquetes incompatíveis entre placa-mãe e processador.</li>
+              <li>Usar apenas 1 pente de memória RAM (Single Channel).</li>
+              <li>Esquecer de remover a película plástica protetora da base do cooler!</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 7: JOGUINHO MODERNO & TESTE DE FPS -->
+      <section id="sec-game" class="course-card">
+        <span class="mini-pill">SIMULADOR GRAFICO PESADO</span>
+        <h2>7. Mini-Game Neon Space Runner com Medidor de FPS</h2>
+        <p>Jogo completo em Canvas com efeitos visuais de luz, partículas e renderização pesada para testar o desempenho real de FPS do seu navegador!</p>
+
+        <div id="game-wrapper">
+          <div class="fps-hud">⚡ FPS: <span id="gameFps">60</span> | Pontos: <span id="gameScore">0</span></div>
+          
+          <!-- OVERLAY DE MENU / GAME OVER -->
+          <div id="gameOverlay" class="game-overlay">
+            <h2 id="overlayTitle" style="color:var(--lime);font-size:32px;margin:0 0 10px">NEON SPACE RUNNER</h2>
+            <p id="overlayText" style="color:var(--muted);margin-bottom:20px;max-width:400px">Desvie dos meteoros incandescentes usando as setas do teclado ou toque na tela!</p>
+            <button class="btn" style="font-size:18px;padding:16px 32px" onclick="startNewGame()">▶ JOGAR AGORA</button>
+          </div>
+
+          <canvas id="gameCanvas" width="800" height="400"></canvas>
+        </div>
+
+        <div style="margin-top:15px;display:flex;justify-content:center;gap:12px">
+          <button class="btn secondary" onclick="movePlayerLeft()">← Mover Esquerda</button>
+          <button class="btn secondary" onclick="movePlayerRight()">Mover Direita →</button>
+        </div>
+      </section>
+
+      <!-- SEÇÃO 8: SEGUNDA CALCULADORA DE PEÇAS NO FINAL -->
+      <section id="sec-calculator2" class="course-card" style="border:2px solid var(--cyan)">
+        <span class="mini-pill" style="color:var(--cyan);border-color:var(--cyan)">MONTADOR AUTOMÁTICO DE SETUP</span>
+        <h2>8. Selecione seu Orçamento e Veja o PC Completo</h2>
+        <p>Ajuste o valor abaixo para obter a lista detalhada das peças recomendadas para o seu orçamento exato:</p>
+
+        <div class="interactive-card" style="margin-top:20px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <label for="bottomBudget" style="font-weight:bold">Seu Limite de Preço:</label>
+            <strong id="bottomBudgetLabel" style="color:var(--cyan);font-size:26px">R$ 3.500</strong>
+          </div>
+          <input id="bottomBudget" type="range" min="700" max="30000" step="50" value="3500" style="width:100%;accent-color:var(--cyan)">
+          
+          <div class="parts-build-box" style="border-color:var(--cyan)">
+            <span class="mini-pill" style="color:var(--cyan);border-color:var(--cyan)">PECAS SELECIONADAS</span>
+            <h3 id="bottomTierName" style="margin:8px 0 2px">PC Gamer Intermediário</h3>
+            <p id="bottomTierDescription" style="color:var(--muted);margin:0 0 12px;font-size:14px"></p>
+            
+            <ul class="parts-list" id="bottomPartsListDisplay">
+              <!-- Peças dinâmicas inseridas via JS -->
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+// NAVEGAÇÃO DE PÁGINAS
+function openDicasPage(){
+  document.getElementById('main-landing').style.display = 'none';
+  document.getElementById('dicas-page').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function closeDicasPage(){
+  document.getElementById('dicas-page').classList.remove('active');
+  document.getElementById('main-landing').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function openSuperGuide(){
+  document.getElementById('dicas-page').classList.remove('active');
+  document.getElementById('course-master-page').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function closeCoursePage(){
+  document.getElementById('course-master-page').classList.remove('active');
+  document.getElementById('dicas-page').classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showTopic(topicId, evt){
+  const buttons = document.querySelectorAll('.select-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  
+  const boxes = document.querySelectorAll('.content-box');
+  boxes.forEach(box => box.classList.remove('active'));
+  
+  if(evt && evt.currentTarget) {
+    evt.currentTarget.classList.add('active');
+  }
+  document.getElementById('topic-' + topicId).classList.add('active');
+}
+
+function setActiveTopic(element){
+  const links = document.querySelectorAll('.topic-menu a');
+  links.forEach(link => link.classList.remove('active'));
+  element.classList.add('active');
+}
+
+// FORMATADOR DE MOEDA
+function money(v){ return new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v).replace(',00',''); }
+
+// ALGORITMO GERADOR DE COMPONENTES POR ORÇAMENTO (MAIS DE 1.000 COMBINAÇÕES)
+function getBuildForBudget(v){
+  let name = "";
+  let desc = "";
+  let parts = {};
+
+  if(v < 1200){
+    name = "PC Básico / Escritório & Estudos";
+    desc = "Excelente para tarefas de rotina, navegação web rápida e trabalhos escolares.";
+    parts = {
+      "Processador": v > 900 ? "Intel Core i3-10100G / Athlon 3000G" : "Intel Celeron / Peças Usadas",
+      "Placa-Mãe": "H410M / A320M Básica",
+      "Memória RAM": v > 1000 ? "8GB DDR4 (2x4GB 2666MHz)" : "8GB DDR4 Single Channel",
+      "Placa de Vídeo": "Vídeo Integrado Intel UHD / Vega 3",
+      "Armazenamento": "SSD SATA 240GB",
+      "Fonte": "Fonte 400W 80 Plus",
+      "Gabinete": "Gabinete Standard de Escritório"
+    };
+  } else if(v < 2200){
+    name = "PC Gamer de Entrada (Vídeo Integrado)";
+    desc = "Roda jogos populares leves (Valorant, CS2, GTA V, LoL) com excelente fluidez.";
+    parts = {
+      "Processador": v > 1700 ? "AMD Ryzen 5 5600G (6 Núcleos / 12 Threads)" : "AMD Ryzen 3 4600G",
+      "Placa-Mãe": "AM4 A520M / B450M com suporte a M.2",
+      "Memória RAM": "16GB DDR4 (2x8GB 3200MHz Dual Channel)",
+      "Placa de Vídeo": "Radeon Vega 7 / Vega 6 Integrada",
+      "Armazenamento": "SSD NVMe M.2 500GB (Leitura 3000MB/s)",
+      "Fonte": "500W 80 Plus Bronze com PFC Ativo",
+      "Gabinete": "Gabinete Gamer com Frente Mesh e 3 Fans RGB"
+    };
+  } else if(v < 3800){
+    name = "PC Gamer Custo-Benefício (Full HD Ultra)";
+    desc = "Inclui Placa de Vídeo Dedicada. Roda todos os jogos modernos em 1080p com alta qualidade.";
+    parts = {
+      "Processador": v > 3000 ? "AMD Ryzen 5 5600 / Intel Core i5-12400F" : "Ryzen 5 4500",
+      "Placa-Mãe": "B550M / B660M com dissipador no VRM",
+      "Memória RAM": "16GB DDR4 (2x8GB 3200MHz)",
+      "Placa de Vídeo": v > 3000 ? "AMD Radeon RX 6600 8GB / RTX 3060 12GB" : "GTX 1650 4GB / RX 580",
+      "Armazenamento": "SSD NVMe M.2 1TB Ultra Rápido",
+      "Fonte": "550W / 600W 80 Plus Bronze Confiável",
+      "Gabinete": "Gabinete Gamer Vidro Temperado + Mesh"
+    };
+  } else if(v < 7000){
+    name = "PC Gamer & Streaming Intermediário High";
+    desc = "Desempenho excelente em Full HD (144Hz+) e Quad HD (1440p). Perfeito para Lives e Edição.";
+    parts = {
+      "Processador": v > 5200 ? "AMD Ryzen 7 5700X3D / Intel Core i5-13600K" : "Ryzen 5 7600 (AM5 DDR5)",
+      "Placa-Mãe": "B650M AM5 / B760M DDR5 com Wi-Fi 6",
+      "Memória RAM": v > 5000 ? "32GB DDR5 (2x16GB 6000MHz)" : "32GB DDR4 (2x16GB 3600MHz)",
+      "Placa de Vídeo": v > 5200 ? "NVIDIA RTX 4060 Ti 8GB / RX 7700 XT 12GB" : "RTX 4060 8GB",
+      "Armazenamento": "SSD NVMe Gen4 1TB (Leitura 5000MB/s)",
+      "Fonte": "650W / 700W 80 Plus Bronze / Gold",
+      "Gabinete": "Gabinete Aquário Premium com Water Cooler 240mm"
+    };
+  } else if(v < 13000){
+    name = "PC Gamer Quad HD / 4K Pro";
+    desc = "Componentes de alta performance em 1440p / 4K. Desempenho bruto com Ray Tracing e DLSS 3.";
+    parts = {
+      "Processador": "AMD Ryzen 7 7800X3D (O Rei dos Jogos)",
+      "Placa-Mãe": "X670 / B650 AM5 Topo de Linha",
+      "Memória RAM": "32GB DDR5 (2x16GB 6000MHz CL30)",
+      "Placa de Vídeo": v > 10000 ? "NVIDIA RTX 4070 Ti Super 16GB / RX 7900 XT" : "RTX 4070 Super 12GB",
+      "Armazenamento": "SSD NVMe Gen4 2TB High Speed",
+      "Fonte": "750W / 850W 80 Plus Gold Modular (ATX 3.0)",
+      "Gabinete": "Gabinete Premium + Water Cooler 360mm ARGB"
+    };
+  } else {
+    name = "PC Entusiasta / Workstation Extreme";
+    desc = "O ápice absoluto da tecnologia. Renderização 3D, IA e jogos em 4K Ultra sem qualquer gargalo.";
+    parts = {
+      "Processador": "AMD Ryzen 9 7950X3D ou Intel Core i9-14900K",
+      "Placa-Mãe": "ASUS ROG / MSI MEG X670E Premium",
+      "Memória RAM": "64GB a 128GB DDR5 High Frequency",
+      "Placa de Vídeo": "NVIDIA GeForce RTX 4090 24GB VRAM",
+      "Armazenamento": "4TB SSD NVMe Gen4/Gen5 (Leitura 7000MB/s)",
+      "Fonte": "1000W / 1200W 80 Plus Platinum ATX 3.0",
+      "Gabinete": "Custom Water Cooling / Custom Case Extreme"
+    };
+  }
+
+  return { name, desc, parts };
+}
+
+// SINCRONIZADOR DE CALCULADORAS
+function updateBuildDisplays(val, labelId, nameId, descId, listId){
+  document.getElementById(labelId).textContent = money(val);
+  const data = getBuildForBudget(val);
+  document.getElementById(nameId).textContent = data.name;
+  document.getElementById(descId).textContent = data.desc;
+
+  const listEl = document.getElementById(listId);
+  listEl.innerHTML = "";
+  for(let key in data.parts){
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${key}:</span> <span>${data.parts[key]}</span>`;
+    listEl.appendChild(li);
+  }
+}
+
+// EVENT LISTENERS DOS SLIDERS
+const slider1 = document.getElementById('quickBudget');
+if(slider1){
+  slider1.addEventListener('input', (e) => {
+    updateBuildDisplays(Number(e.target.value), 'quickBudgetLabel', 'tierName', 'tierDescription', 'partsListDisplay');
+  });
+  updateBuildDisplays(2500, 'quickBudgetLabel', 'tierName', 'tierDescription', 'partsListDisplay');
+}
+
+const slider2 = document.getElementById('bottomBudget');
+if(slider2){
+  slider2.addEventListener('input', (e) => {
+    updateBuildDisplays(Number(e.target.value), 'bottomBudgetLabel', 'bottomTierName', 'bottomTierDescription', 'bottomPartsListDisplay');
+  });
+  updateBuildDisplays(3500, 'bottomBudgetLabel', 'bottomTierName', 'bottomTierDescription', 'bottomPartsListDisplay');
+}
+
+
+// ================= JOGO NEON SPACE RUNNER (CANVAS ENGINE) =================
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let gameActive = false;
+let gameScore = 0;
+let lastTime = performance.now();
+let frames = 0;
+let fps = 60;
+
+let player = { x: 380, y: 320, w: 40, h: 40, color: '#c5ff4a', speed: 8 };
+let obstacles = [];
+let particles = [];
+
+function movePlayerLeft(){ if(player.x > 20) player.x -= 30; }
+function movePlayerRight(){ if(player.x < canvas.width - 60) player.x += 30; }
+
+window.addEventListener('keydown', e => {
+  if(e.key === 'ArrowLeft') movePlayerLeft();
+  if(e.key === 'ArrowRight') movePlayerRight();
+});
+
+function startNewGame(){
+  document.getElementById('gameOverlay').classList.add('hidden');
+  player.x = 380;
+  obstacles = [];
+  particles = [];
+  gameScore = 0;
+  gameActive = true;
+  lastTime = performance.now();
+  requestAnimationFrame(gameEngine);
+}
+
+function gameOver(){
+  gameActive = false;
+  document.getElementById('overlayTitle').textContent = "FIM DE JOGO!";
+  document.getElementById('overlayText').textContent = `Sua Pontuação Final: ${gameScore} pontos!`;
+  document.getElementById('gameOverlay').classList.remove('hidden');
+}
+
+function spawnObstacles(){
+  if(Math.random() < 0.08){
+    let size = Math.random() * 30 + 20;
+    obstacles.push({
+      x: Math.random() * (canvas.width - size),
+      y: -size,
+      w: size,
+      h: size,
+      speed: Math.random() * 4 + 3,
+      color: '#ff5757'
+    });
+  }
+}
+
+function addParticles(x, y){
+  for(let i=0; i<5; i++){
+    particles.push({
+      x: x, y: y,
+      vx: (Math.random() - 0.5) * 4,
+      vy: (Math.random() - 0.5) * 4,
+      life: 20,
+      color: '#57e7ff'
+    });
+  }
+}
+
+function gameEngine(now){
+  if(!gameActive) return;
+
+  // Medidor de FPS
+  frames++;
+  if(now - lastTime >= 1000){
+    fps = frames;
+    frames = 0;
+    lastTime = now;
+    document.getElementById('gameFps').textContent = fps;
+  }
+
+  // Fundo com rastro
+  ctx.fillStyle = 'rgba(3, 5, 9, 0.3)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Jogador Neon com Glow
+  ctx.save();
+  ctx.shadowBlur = 15;
+  ctx.shadowColor = player.color;
+  ctx.fillStyle = player.color;
+  ctx.fillRect(player.x, player.y, player.w, player.h);
+  ctx.restore();
+
+  // Gerar Partículas do Motor
+  addParticles(player.x + player.w/2, player.y + player.h);
+
+  // Partículas
+  for(let i=0; i<particles.length; i++){
+    let p = particles[i];
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x, p.y, 3, 3);
+    if(p.life <= 0){ particles.splice(i, 1); i--; }
+  }
+
+  // Obstáculos e Colisão
+  spawnObstacles();
+  for(let i=0; i<obstacles.length; i++){
+    let o = obstacles[i];
+    o.y += o.speed;
+
+    ctx.save();
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = o.color;
+    ctx.fillStyle = o.color;
+    ctx.fillRect(o.x, o.y, o.w, o.h);
+    ctx.restore();
+
+    // Colisão
+    if(
+      player.x < o.x + o.w &&
+      player.x + player.w > o.x &&
+      player.y < o.y + o.h &&
+      player.y + player.h > o.y
+    ){
+      gameOver();
+      return;
+    }
+
+    if(o.y > canvas.height){
+      obstacles.splice(i, 1);
+      i--;
+      gameScore += 10;
+      document.getElementById('gameScore').textContent = gameScore;
+    }
+  }
+
+  requestAnimationFrame(gameEngine);
+}
+</script>
+</body>
+</html>
